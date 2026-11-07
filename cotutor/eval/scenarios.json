@@ -1,0 +1,161 @@
+{
+ "_note": "평가 시나리오 12개(학년쌍 3종 × 교과). 단원은 data/units.demo.csv 예시 매핑. 1·2학년은 국어·수학만 사용(통합교과 제외).",
+ "scenarios": [
+  {
+   "id": "S01",
+   "pairType": "SAME_BAND",
+   "gradeA": 3,
+   "gradeB": 4,
+   "subject": "사회",
+   "units": {
+    "A": "우리가 사는 곳 - 더 살기 좋은 곳 만들기",
+    "B": "지도로 만나는 우리 지역 - 지도에서 우리 지역 찾기"
+   },
+   "durationMin": 40,
+   "hasAssistant": false
+  },
+  {
+   "id": "S02",
+   "pairType": "SAME_BAND",
+   "gradeA": 3,
+   "gradeB": 4,
+   "subject": "수학",
+   "units": {
+    "A": "덧셈과 뺄셈 - 세 자리 수의 덧셈",
+    "B": "큰 수 - 다섯 자리 수"
+   },
+   "durationMin": 40,
+   "hasAssistant": false
+  },
+  {
+   "id": "S03",
+   "pairType": "SAME_BAND",
+   "gradeA": 5,
+   "gradeB": 6,
+   "subject": "과학",
+   "units": {
+    "A": "온도와 열 - 온도 재기",
+    "B": "지구와 달의 운동 - 하루 동안 태양과 달"
+   },
+   "durationMin": 40,
+   "hasAssistant": false
+  },
+  {
+   "id": "S04",
+   "pairType": "SAME_BAND",
+   "gradeA": 5,
+   "gradeB": 6,
+   "subject": "국어",
+   "units": {
+    "A": "대화와 공감 - 공감하며 대화하기",
+    "B": "비유하는 표현 - 비유 표현 알기"
+   },
+   "durationMin": 40,
+   "hasAssistant": false
+  },
+  {
+   "id": "S05",
+   "pairType": "CROSS_BAND",
+   "gradeA": 4,
+   "gradeB": 5,
+   "subject": "수학",
+   "units": {
+    "A": "각도 - 각의 크기",
+    "B": "약수와 배수 - 약수 알기"
+   },
+   "durationMin": 40,
+   "hasAssistant": false
+  },
+  {
+   "id": "S06",
+   "pairType": "CROSS_BAND",
+   "gradeA": 4,
+   "gradeB": 5,
+   "subject": "국어",
+   "units": {
+    "A": "생각과 느낌을 나누어요 - 감각적 표현",
+    "B": "대화와 공감 - 공감하며 대화하기"
+   },
+   "durationMin": 40,
+   "hasAssistant": false
+  },
+  {
+   "id": "S07",
+   "pairType": "CROSS_BAND",
+   "gradeA": 2,
+   "gradeB": 3,
+   "subject": "국어",
+   "units": {
+    "A": "마음을 나누어요 - 인사말 알기",
+    "B": "글을 읽고 소개해요 - 중심 생각 찾기"
+   },
+   "durationMin": 40,
+   "hasAssistant": false
+  },
+  {
+   "id": "S08",
+   "pairType": "CROSS_BAND",
+   "gradeA": 4,
+   "gradeB": 5,
+   "subject": "도덕",
+   "units": {
+    "A": "나와 너 우리 함께 - 감정 다스리기",
+    "B": "바르고 떳떳하게 - 정직한 삶"
+   },
+   "durationMin": 40,
+   "hasAssistant": false
+  },
+  {
+   "id": "S09",
+   "pairType": "NON_ADJACENT",
+   "gradeA": 3,
+   "gradeB": 6,
+   "subject": "도덕",
+   "units": {
+    "A": "나와 너 우리 함께 - 소중한 나",
+    "B": "내 삶의 주인은 바로 나 - 자주적인 삶"
+   },
+   "durationMin": 40,
+   "hasAssistant": false
+  },
+  {
+   "id": "S10",
+   "pairType": "NON_ADJACENT",
+   "gradeA": 3,
+   "gradeB": 6,
+   "subject": "체육",
+   "units": {
+    "A": "건강 활동 - 바른 자세",
+    "B": "건강 활동 - 건강한 생활"
+   },
+   "durationMin": 40,
+   "hasAssistant": false
+  },
+  {
+   "id": "S11",
+   "pairType": "NON_ADJACENT",
+   "gradeA": 2,
+   "gradeB": 5,
+   "subject": "수학",
+   "units": {
+    "A": "세 자리 수 - 백 알기",
+    "B": "약수와 배수 - 약수 알기"
+   },
+   "durationMin": 40,
+   "hasAssistant": false
+  },
+  {
+   "id": "S12",
+   "pairType": "NON_ADJACENT",
+   "gradeA": 1,
+   "gradeB": 4,
+   "subject": "국어",
+   "units": {
+    "A": "글자를 만들어요 - 한글 놀이",
+    "B": "생각과 느낌을 나누어요 - 감각적 표현"
+   },
+   "durationMin": 40,
+   "hasAssistant": false
+  }
+ ]
+}

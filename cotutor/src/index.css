@@ -1,0 +1,166 @@
+/* 글꼴은 모두 로컬 번들(오프라인 데모). Pretendard·Yeon Sung·JetBrains Mono 모두 SIL OFL 1.1 */
+@import 'pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css';
+@import './fonts/yeon-sung.css';
+@import './fonts/jetbrains-mono.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* v3 "칠판과 분필"(docs/design/DESIGN_CONCEPT.md). 값은 tailwind 토큰에서 theme()로 가져와 한 곳에서만 바꾼다 */
+@layer base {
+  :root {
+    --paper: theme('colors.paper.DEFAULT');
+    --paper-card: theme('colors.paper.card');
+    --board: theme('colors.board.900');
+    --board-deep: theme('colors.board.950');
+    --chalk: theme('colors.chalk.400');
+    --chalk-white: theme('colors.chalkwhite');
+    --ink: theme('colors.ink.900');
+    --ink-muted: theme('colors.ink.500');
+    --line: theme('colors.ink.200');
+    --grade-lo: theme('colors.lo.500');
+    --grade-hi: theme('colors.hi.500');
+    --grade-tg: theme('colors.tg.500');
+    color-scheme: light;
+  }
+  @media screen {
+    .dark { --line: theme('colors.board.700'); color-scheme: dark; }
+  }
+  html { -webkit-text-size-adjust: 100%; }
+  /* 심사 모드: 프로젝터(1920)에서 글자 단계 전체를 약 137%까지 키운다. 모든 글자 크기·간격이 rem이라 함께 커진다.
+     1280×720 프로젝터는 화소가 이미 커서(1px≈2.3mm) 16px 그대로 두고, 사이드바 접기·디버그 숨김만 적용한다 */
+  @media screen {
+    html.present { font-size: clamp(16px, calc(1.6vw - 8.5px), 22px); }
+  }
+  body {
+    @apply bg-paper text-ink-900 antialiased dark:bg-board-950 dark:text-ink-100;
+    font-feature-settings: 'tnum' 1, 'ss06' 1;
+    word-break: keep-all;
+    /* anywhere는 flex 최소 폭을 글자 1개로 줄여 "4학/년"처럼 쪼갠다 → break-word(넘칠 때만 끊음) */
+    overflow-wrap: break-word;
+  }
+  p, li, dd, figcaption, blockquote { text-wrap: pretty; }
+  h1, h2, h3 { text-wrap: balance; }
+  ::placeholder { color: theme('colors.ink.500'); opacity: 1; }
+  /* 초점: 종이 위에서는 진한 칠판 선(11:1) + 분필 노랑 후광, 칠판(다크)에서는 분필 노랑 링 */
+  :focus-visible {
+    outline: 2px solid theme('colors.board.900');
+    outline-offset: 2px;
+    box-shadow: 0 0 0 6px theme('colors.chalk.300');
+  }
+  @media screen {
+    .dark :focus-visible { outline-color: theme('colors.chalk.400'); box-shadow: 0 0 0 6px rgb(21 43 35 / .9); }
+  }
+  ::selection { background: theme('colors.chalk.200'); color: theme('colors.ink.900'); }
+}
+
+@layer components {
+  /* 칠판: 짙은 초록 + 지운 분필 자국(번짐) + 분필 가루(아주 옅은 노이즈) */
+  .chalkboard {
+    background-color: var(--board);
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.09'/%3E%3C/svg%3E"),
+      radial-gradient(120% 70% at 18% 12%, rgb(255 255 255 / .07), transparent 60%),
+      radial-gradient(60% 50% at 85% 85%, rgb(255 255 255 / .045), transparent 70%),
+      linear-gradient(100deg, transparent 30%, rgb(255 255 255 / .03) 45%, transparent 60%);
+    color: var(--chalk-white);
+  }
+  /* 나무 분필 받침(아래 가장자리). 아주 얇게 */
+  .chalk-tray {
+    background: linear-gradient(to bottom, theme('colors.wood.400'), theme('colors.wood.600'));
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / .18), 0 -1px 0 rgb(0 0 0 / .25);
+  }
+  /* 분필 점선: 손으로 그은 듯 길이가 다른 점선 */
+  .chalk-rule {
+    height: 2px;
+    background-image: repeating-linear-gradient(90deg, currentColor 0 14px, transparent 14px 20px, currentColor 20px 24px, transparent 24px 31px);
+    border-radius: 2px;
+  }
+  .chalk-rule-v {
+    width: 2px;
+    background-image: repeating-linear-gradient(180deg, currentColor 0 7px, transparent 7px 12px);
+  }
+  /* 과정안 종이 줄(아주 옅게, 작은 면적에만) */
+  .ruled {
+    background-image: linear-gradient(to bottom, transparent calc(1.75rem - 1px), rgb(43 42 38 / .06) calc(1.75rem - 1px), rgb(43 42 38 / .06) 1.75rem);
+    background-size: 100% 1.75rem;
+    background-position: 0 var(--ruled-offset, 0px);
+    background-attachment: local;
+  }
+  @media screen {
+    .dark .ruled { background-image: linear-gradient(to bottom, transparent calc(1.75rem - 1px), rgb(244 241 232 / .05) calc(1.75rem - 1px), rgb(244 241 232 / .05) 1.75rem); }
+  }
+  .flow-dash {
+    background-image: repeating-linear-gradient(90deg, currentColor 0 8px, transparent 8px 12px);
+    background-size: 24px 2px;
+  }
+  /* 입력 경계는 3:1 이상(1.4.11): ink-500 80% ≈ 3.5:1, 다크 board-500 3.5:1 */
+  .input {
+    @apply w-full rounded-lg border border-ink-500/80 bg-paper-card px-3 py-2 text-sm text-ink-900 shadow-sm
+      focus:border-board-700 focus:outline-none
+      dark:border-board-500 dark:bg-board-950/60 dark:text-ink-50 dark:placeholder:text-board-300;
+  }
+  .input-sm { @apply min-h-6 rounded-md border border-ink-500/80 bg-paper-card px-1.5 py-1 text-2xs text-ink-800 dark:border-board-500 dark:bg-board-900 dark:text-ink-100; }
+  /* 인라인 편집(제목 등): 평소엔 글처럼, 마우스·초점에서만 입력칸 테두리 */
+  .input-inline { @apply w-full rounded-lg border border-transparent bg-transparent px-1 py-1 shadow-none hover:border-ink-300 focus:border-board-700 focus:bg-paper-card focus:outline-none dark:hover:border-board-600 dark:focus:bg-board-950/60; }
+  .btn {
+    @apply inline-flex min-h-6 items-center justify-center gap-1.5 whitespace-nowrap rounded-lg px-3.5 py-2 text-sm font-semibold transition
+      disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  /* 주 버튼 = 칠판 초록. 다크에서도 노랑이 아니라 밝은 칠판 초록(노랑은 교사 승인 도장 전용) */
+  .btn-primary { @apply btn bg-board-900 text-chalkwhite shadow-sm hover:bg-board-800 dark:bg-board-600 dark:text-chalkwhite dark:hover:bg-board-500; }
+  /* 칠판 위 CTA 하나(히어로·수업 시작)에만 */
+  .btn-chalk { @apply btn bg-chalk-400 text-board-950 shadow-sm hover:bg-chalk-300; }
+  .btn-ghost { @apply btn border border-ink-300 bg-paper-card text-ink-700 hover:border-ink-400 hover:bg-paper-deep dark:border-board-600 dark:bg-board-900 dark:text-ink-100 dark:hover:bg-board-800; }
+  .btn-danger { @apply btn border border-bad-300 bg-paper-card text-bad-700 hover:bg-bad-50 dark:border-bad-400/40 dark:bg-board-900 dark:text-bad-300 dark:hover:bg-bad-500/10; }
+  /* 칠판 위 보조 버튼 */
+  .btn-on-board { @apply btn border border-chalkwhite/40 text-chalkwhite hover:bg-white/10; }
+  .btn-sm { @apply px-2.5 py-1 text-xs; }
+  .btn-lg { @apply min-h-12 px-5 py-2.5 text-base; }
+  .btn-icon { @apply aspect-square px-2; }
+  /* 글자 링크 모양 버튼(24px 타깃) */
+  .btn-link { @apply inline-flex min-h-6 items-center gap-1 rounded text-2xs font-semibold text-board-700 underline-offset-2 hover:underline dark:text-chalk-300; }
+  .label { @apply mb-1 block text-xs font-semibold text-ink-600 dark:text-board-300; }
+  /* 손글씨 꼬리표: 칠판 옆에 분필로 적은 단계 이름(한글이라 손글씨가 제 모양을 낸다) */
+  .eyebrow { @apply inline-flex items-center gap-2 font-hand text-lg leading-none text-board-700 dark:text-chalk-300; }
+  .eyebrow-bar { @apply h-[3px] w-5 rounded-full bg-board-300 dark:bg-chalk-300; }
+  /* 간접지도(□) 빗금: 학년색 */
+  .hatch-a { background-image: repeating-linear-gradient(135deg, theme('colors.lo.100') 0 6px, theme('colors.lo.50') 6px 12px); }
+  .hatch-b { background-image: repeating-linear-gradient(135deg, theme('colors.hi.100') 0 6px, theme('colors.hi.50') 6px 12px); }
+  @media screen {
+    .dark .hatch-a { background-image: repeating-linear-gradient(135deg, rgb(74 127 181 / .42) 0 6px, rgb(74 127 181 / .18) 6px 12px); }
+    .dark .hatch-b { background-image: repeating-linear-gradient(135deg, rgb(224 122 79 / .42) 0 6px, rgb(224 122 79 / .18) 6px 12px); }
+    /* 심사 모드: 프로젝터 물빠짐에 대비해 빗금을 한 단계 진하게(글자는 lo/hi-900이라 대비 유지) */
+    html.present:not(.dark) .hatch-a { background-image: repeating-linear-gradient(135deg, theme('colors.lo.200') 0 6px, theme('colors.lo.50') 6px 12px); }
+    html.present:not(.dark) .hatch-b { background-image: repeating-linear-gradient(135deg, theme('colors.hi.200') 0 6px, theme('colors.hi.50') 6px 12px); }
+  }
+}
+
+/* Yeon Sung은 400 한 굵기뿐 → 부모의 extrabold를 물려받아 가짜 굵기가 생기지 않게 */
+.font-hand { font-weight: 400; font-synthesis: none; }
+
+/* 심사 모드에서 숨길 개발 정보(ms·모델명·R 번호·프롬프트 버전). 값은 title 툴팁에 남긴다 */
+@media screen {
+  html.present .dev { display: none !important; }
+}
+html:not(.present) .present-only { display: none !important; }
+
+.print-only { display: none; }
+
+@media print {
+  @page { size: A4; margin: 14mm; }
+  .no-print { display: none !important; }
+  .print-only { display: block !important; }
+  body { background: white !important; color: #1c1b18 !important; }
+  .print-plain { box-shadow: none !important; border-color: #cfc8b6 !important; background-color: white !important; }
+  .chalkboard { background: white !important; color: #1c1b18 !important; }
+  .print-break { break-before: page; }
+  .avoid-break { break-inside: avoid; }
+  .print-full { padding-left: 0 !important; }
+  /* 색이 뜻을 가지는 작은 면(학년 번호 상자 등)은 배경 그래픽을 꺼도 그대로 나오게. 그 밖은 흰 바탕+테두리로 읽히게 만든다 */
+  .print-exact { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .print-nobreak-auto { break-inside: auto !important; }
+  table { break-inside: auto; }
+  tr { break-inside: avoid; }
+}

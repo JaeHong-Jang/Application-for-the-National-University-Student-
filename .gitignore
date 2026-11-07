@@ -1,0 +1,9 @@
+node_modules/
+dist/
+dist-server/
+var/
+artifacts/
+.env
+.omc/
+~$*
+*.tmp

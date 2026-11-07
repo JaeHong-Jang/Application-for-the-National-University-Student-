@@ -1,0 +1,143 @@
+{
+ "route": "filler",
+ "hash": "a7d10886aeefa39979e4ace0",
+ "promptVersion": "v1-2026-11-06",
+ "origin": "ollama-live",
+ "originNote": null,
+ "recordedWith": {
+  "provider": "ollama",
+  "model": "ax4-light:q4_K_M",
+  "at": "2026-11-06T10:41:00.430Z",
+  "promptVersion": "v1-2026-11-06"
+ },
+ "extra": null,
+ "output": {
+  "blocks": [
+   {
+    "id": "J1",
+    "phase": "도입",
+    "activity": "우리 지역의 장소 탐색 및 개선 방안 논의",
+    "materials": [
+     "지도",
+     "포스트잇"
+    ],
+    "noise": "normal",
+    "card": null,
+    "standardCodes": [
+     "4사01-02",
+     "4사05-02"
+    ]
+   },
+   {
+    "id": "A1",
+    "phase": "전개",
+    "activity": "우리 동네의 장소 찾기 및 특징 정리하기",
+    "materials": [
+     "지도",
+     "포스트잇"
+    ],
+    "noise": "quiet",
+    "card": null,
+    "standardCodes": [
+     "4사01-02"
+    ]
+   },
+   {
+    "id": "B1",
+    "phase": "전개",
+    "activity": "지도에서 우리 지역 찾기 및 정보 탐색",
+    "materials": [
+     "지도"
+    ],
+    "noise": "normal",
+    "card": {
+     "withWhom": "짝",
+     "steps": [
+      "지도에서 우리 지역의 위치를 찾는다.",
+      "해당 지역의 3가지 이상의 지리 정보를 찾아 기록한다.",
+      "찾은 정보를 짝과 공유한다."
+     ],
+     "doneSignal": "카드를 다 찾으면 손을 들어 올린다.",
+     "ifStuck": "지도의 범례를 참고하여 위치를 확인한다.",
+     "output": "지도에 표시된 지역 정보 3가지 이상",
+     "guideRole": "모둠 이끔이가 순서를 지킨다.",
+     "physicalRisk": null
+    },
+    "standardCodes": [
+     "4사05-02"
+    ]
+   },
+   {
+    "id": "A2",
+    "phase": "전개",
+    "activity": "우리 동네의 문제점 및 개선 방안 카드 만들기",
+    "materials": [
+     "카드"
+    ],
+    "noise": "quiet",
+    "card": {
+     "withWhom": "모둠",
+     "steps": [
+      "우리 동네의 문제점을 1가지 이상 찾아본다.",
+      "각 문제점에 대한 개선 방안을 생각한다.",
+      "개선 방안을 카드에 적고, 모둠원과 공유한다."
+     ],
+     "doneSignal": "카드를 다 만들면 손을 머리에 올린다.",
+     "ifStuck": "교사와 눈을 마주치지 않고, 스스로 해결 방법을 생각한다.",
+     "output": "개선 방안 카드 2장 이상",
+     "guideRole": "모둠 이끔이가 순서를 지킨다.",
+     "physicalRisk": null
+    },
+    "standardCodes": [
+     "4사01-02"
+    ]
+   },
+   {
+    "id": "B2",
+    "phase": "정리",
+    "activity": "지도와 실제 지역 비교 및 발표",
+    "materials": [
+     "지도",
+     "포스트잇"
+    ],
+    "noise": "normal",
+    "card": null,
+    "standardCodes": [
+     "4사05-02"
+    ]
+   },
+   {
+    "id": "J2",
+    "phase": "정리",
+    "activity": "우리 지역의 이해와 개선 방안 공유",
+    "materials": [
+     "포스트잇"
+    ],
+    "noise": "normal",
+    "card": null,
+    "standardCodes": [
+     "4사01-02",
+     "4사05-02"
+    ]
+   }
+  ],
+  "assessment": [
+   {
+    "lane": "A",
+    "code": "4사01-02",
+    "excellent": "3학년 학생들은 주변 장소를 다양하게 탐색하고, 지역 개선 방안을 2가지 이상 구체적으로 제시할 수 있다.",
+    "good": "3학년 학생들은 주변 장소를 탐색하며, 간단한 개선 방안을 제시할 수 있다.",
+    "needsSupport": "학생들이 구체적인 개선 방안을 제시하지 못할 경우, 교사의 추가 설명과 예시가 필요하다.",
+    "method": "학생들이 직접 지역 개선 방안을 제안하고, 그 이유를 설명할 수 있는 능력을 평가한다."
+   },
+   {
+    "lane": "B",
+    "code": "4사05-02",
+    "excellent": "4학년 학생들은 지도에서 지역 위치를 정확히 파악하고, 3가지 이상의 지리 정보를 탐색할 수 있다.",
+    "good": "4학년 학생들은 지도에서 지역 위치를 파악하고, 2가지 이상의 지리 정보를 찾을 수 있다.",
+    "needsSupport": "학생들이 지도 이해에 어려움을 겪을 경우, 교사의 지도와 시각적 예시가 필요하다.",
+    "method": "학생들이 지도를 활용해 지역 정보를 찾고, 그 정보를 설명하는 능력을 평가한다."
+   }
+  ]
+ }
+}

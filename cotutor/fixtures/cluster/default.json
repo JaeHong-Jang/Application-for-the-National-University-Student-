@@ -1,0 +1,77 @@
+{
+ "route": "cluster",
+ "hash": "ef8195677e0ed3643ba62da2",
+ "promptVersion": "v1-2026-11-06",
+ "origin": "ollama-live",
+ "originNote": null,
+ "recordedWith": {
+  "provider": "ollama",
+  "model": "qwen3:4b-instruct-2507-q4_K_M",
+  "at": "2026-11-06T10:41:08.081Z",
+  "promptVersion": "v1-2026-11-06"
+ },
+ "extra": {
+  "qTexts": {
+   "q1": "A|장소감이 뭐에요? 잘 모르겟어요",
+   "q2": "B|방위표가 뭐에요",
+   "q3": "A|심상지도는 진짜 지도랑 똑같이 그려야 돼요?",
+   "q4": "B|축척이 머예요",
+   "q5": "A|놀이터는 좋은 장소인데 왜 친구는 싫다고 해요",
+   "q6": "B|지도에 우리집은 왜 없어요",
+   "q7": "A|우리 마을 가게 아저씨 번호 [전화번호] 적어도 되요?",
+   "q8": "B|북쪽은 항상 위에 있어요?",
+   "q9": "A|장소감은 기분이랑 같은거에요?",
+   "q10": "B|우리 지역이 강원도 어디쯤인지 지도에서 어떻게 찾아요",
+   "q11": "A|더 살기 좋은 곳으로 만들려면 누구한테 말해요",
+   "q12": "B|지도 기호는 누가 정한거에요? 우리가 만들어도 돼요?"
+  }
+ },
+ "output": {
+  "clusters": [
+   {
+    "label": "지도의 방위와 축척을 오해함",
+    "criteria": "지도의 축척이나 방위표, 기호에 대한 이해 부족",
+    "lane": "B",
+    "linkedCode": "4사05-02",
+    "type": "오개념",
+    "questionIds": [
+     "q2",
+     "q4",
+     "q6",
+     "q8",
+     "q10",
+     "q12"
+    ],
+    "representativeId": "q2"
+   },
+   {
+    "label": "장소감을 기분과 혼동함",
+    "criteria": "지도와 실제 장소의 관계를 오해하고, 감정이나 기분과 혼동",
+    "lane": "A",
+    "linkedCode": "4사01-02",
+    "type": "오개념",
+    "questionIds": [
+     "q1",
+     "q3",
+     "q9"
+    ],
+    "representativeId": "q1"
+   },
+   {
+    "label": "지도를 실제 환경과 연결하지 못함",
+    "criteria": "지도의 실제 사용과 현실적 맥락에 대한 이해 부족",
+    "lane": "A",
+    "linkedCode": "4사01-02",
+    "type": "어휘",
+    "questionIds": [
+     "q5",
+     "q7",
+     "q11"
+    ],
+    "representativeId": "q5"
+   }
+  ],
+  "flags": [],
+  "unclustered": []
+ }
+}

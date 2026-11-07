@@ -1,0 +1,39 @@
+{
+ "route": "planner",
+ "hash": "a71bd074fe5c7aa25b278b06",
+ "promptVersion": "v1-2026-11-06",
+ "origin": "ollama-live",
+ "originNote": null,
+ "recordedWith": {
+  "provider": "ollama",
+  "model": "ax4-light:q4_K_M",
+  "at": "2026-11-06T10:40:31.393Z",
+  "promptVersion": "v1-2026-11-06"
+ },
+ "extra": null,
+ "output": {
+  "commonTheme": "우리 지역 이해하기",
+  "lessonType": "단일교과복수활동",
+  "method": "부분통합",
+  "standards": [
+   {
+    "code": "4사01-02",
+    "lane": "A",
+    "why": "주변 장소와 지역 개선 방안을 탐색하는 활동은 3학년 학생들에게 적합하며, 4학년 학생들에게는 더 깊이 있는 문제 해결 능력을 기르기 위해 확장된다."
+   },
+   {
+    "code": "4사05-02",
+    "lane": "B",
+    "why": "지도에서 지역 위치를 파악하고 지리 정보를 탐색하는 활동은 4학년 학생들에게 지도 이해력을 심화시키고, 3학년 학생들에게는 기초적인 지도 읽기 능력을 배양한다."
+   }
+  ],
+  "integrationPoints": [
+   "A: 우리가 사는 곳 - 더 살기 좋은 곳 만들기",
+   "B: 지도로 만나는 우리 지역 - 지도에서 우리 지역 찾기"
+  ],
+  "splitPoints": {
+   "A": "4사01-02, 4사01-01",
+   "B": "4사05-02, 4사05-01"
+  }
+ }
+}
